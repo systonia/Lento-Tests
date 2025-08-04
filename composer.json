@@ -1,0 +1,30 @@
+{
+    "name": "systonia/lento-tests",
+    "description": "Standalone unit/integration tests for Lento framework",
+    "type": "project",
+    "scripts": {
+        "test": "vendor/bin/phpunit --testdox",
+        "test:coverage": "vendor/bin/phpunit --coverage-text"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lento\\Tests\\": "tests/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../Lento",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "require": {
+        "systonia/lento": "dev-main",
+        "phpunit/phpunit": "^10.0",
+        "psr/container": "^2.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
