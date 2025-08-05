@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a69db08f1611c91c3c98a0feebd8b4b",
+    "content-hash": "66ccc2ebabe4a6747be3f16661cc1873",
     "packages": [
         {
             "name": "myclabs/deep-copy",
@@ -1647,14 +1647,13 @@
             "dist": {
                 "type": "path",
                 "url": "../Lento",
-                "reference": "50af5a1d21908acc9b69860fe3f2e73bf59ea849"
+                "reference": "408a512c75c7560d08d6d7fb8163510da3e4a6c1"
             },
             "require": {
                 "php": ">=8.4"
             },
             "require-dev": {
                 "monolog/monolog": "^3.9",
-                "phpunit/phpunit": "^12.3",
                 "psr/container": "^2.0",
                 "psr/log": "^3.0"
             },
@@ -1668,14 +1667,6 @@
                     "Lento\\": "src/Lento/"
                 }
             },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit --testdox"
-                ],
-                "test:coverage": [
-                    "vendor/bin/phpunit --coverage-text"
-                ]
-            },
             "license": [
                 "MIT"
             ],
@@ -1688,9 +1679,8 @@
             "description": "A lightweight modular API framework for PHP, bundling routing, middleware, CORS, logging, and Eloquent ORM.",
             "keywords": [
                 "api",
-                "eloquent",
                 "framework",
-                "microframework",
+                "mvc",
                 "php",
                 "psr-3",
                 "psr-4"
@@ -1751,7 +1741,58 @@
             "time": "2024-03-03T12:36:25+00:00"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "psr/log",
+            "version": "3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/log/tree/3.0.2"
+            },
+            "time": "2024-09-11T13:17:53+00:00"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
