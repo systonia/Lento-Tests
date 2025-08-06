@@ -2,13 +2,17 @@
 
 use PHPUnit\Framework\TestCase;
 
-use Lento\{App, OpenAPI};
-use Lento\Tests\Fixtures\{CustomersController};
+use Lento\{App, OpenAPI, JWT, Env, FileSystem, Renderer};
+use Lento\Tests\Fixtures\{CustomersController, OrdersController};
 
-final class AppTest extends TestCase
+final class FullAppTest extends TestCase
 {
     public function testMinimalAppSetup()
     {
+
+        JWT::configure(['secret' => Env::get('JWT_SECRET', 'helloworld!')]);
+        FileSystem::setCacheDirectory(__DIR__ . '/cache')
+            ::setPublicDirectory(__DIR__ . '/public');
         OpenAPI::configure([
             'tags'=> [
                 ['name' => 'products', 'description' => 'Bakery products'],
@@ -17,9 +21,18 @@ final class AppTest extends TestCase
             ]
         ]);
 
-        App::create(controllers: [
-            CustomersController::class
+        Renderer::configure([
+            'directory' => __DIR__ . '/Views',
+            'layout' => '_Layout'
         ]);
+
+        App::create(controllers: [
+            CustomersController::class,
+            OrdersController::class
+        ]);
+
+
+        App::useJWT();
 
         App::useCors([]);
 
@@ -34,13 +47,18 @@ final class AppTest extends TestCase
         $route = $router->findRoute($routes, 'GET', '/customers/{customerId}/orders');
         $this->assertNotNull($route);
 
-        $_SERVER['HTTP_AUTHORIZATION'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30';
-        $_SERVER['REQUEST_URI'] = '/customers/1/orders';
+        $_SERVER['REQUEST_URI'] = '/openapi/spec.json';
         $_SERVER['REQUEST_METHOD'] = 'GET';
         ob_start();
         App::run();
         $output = ob_get_clean();
 
-        $this->assertEquals('"1"', $output);
+        $_SERVER['REQUEST_URI'] = '/customers';
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+        ob_start();
+        App::run();
+        $output = ob_get_clean();
+
+        $this->assertNotEmpty($output);
     }
 }

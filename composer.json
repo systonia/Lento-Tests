@@ -3,7 +3,7 @@
     "description": "Standalone unit/integration tests for Lento framework",
     "type": "project",
     "scripts": {
-        "test": "vendor/bin/phpunit --testdox --display-deprecations",
+        "test": "vendor/bin/phpunit --testdox --display-deprecations --display-warnings",
         "coverage:text": "vendor/bin/phpunit --coverage-text",
         "coverage:html": "vendor/bin/phpunit --coverage-html coverage/"
     },

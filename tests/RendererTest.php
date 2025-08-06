@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 use Lento\Renderer;
-use Lento\RendererOptions;
+use Lento\Models\RendererOptions;
 
 final class RendererTest extends TestCase
 {
