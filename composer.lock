@@ -1647,7 +1647,7 @@
             "dist": {
                 "type": "path",
                 "url": "../Lento",
-                "reference": "408a512c75c7560d08d6d7fb8163510da3e4a6c1"
+                "reference": "2f7a421ac7e3218334596e7e633ac9a5e0e26fa5"
             },
             "require": {
                 "php": ">=8.4"

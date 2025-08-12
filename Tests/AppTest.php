@@ -1,16 +1,16 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+namespace Lento\Tests;
 
 use Lento\{App, OpenAPI};
 use Lento\Tests\Fixtures\{CustomersController};
 
-final class AppTest extends TestCase
+final class AppTest extends BaseTestCase
 {
-    public function testMinimalAppSetup()
+    protected function setUp(): void
     {
         OpenAPI::configure([
-            'tags'=> [
+            'tags' => [
                 ['name' => 'products', 'description' => 'Bakery products'],
                 ['name' => 'orders', 'description' => 'Order data'],
                 ['name' => 'customers', 'description' => 'Customer data'],
@@ -23,6 +23,11 @@ final class AppTest extends TestCase
 
         App::useCors([]);
 
+        parent::setUp();
+    }
+
+    public function testMinimalAppSetup()
+    {
         $router = App::getRouter();
         $routes = $router->getRoutes();
 
