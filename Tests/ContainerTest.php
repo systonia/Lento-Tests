@@ -2,23 +2,9 @@
 
 use PHPUnit\Framework\TestCase;
 use Lento\Container;
-use Lento\Exceptions\NotFoundException;
+use Lento\Exceptions\{ContainerException, NotFoundException};
 
-class ExampleService
-{
-}
-
-class AnotherService
-{
-}
-
-class CrashingService
-{
-    public function __construct()
-    {
-        throw new \Exception("I always crash!");
-    }
-}
+use Lento\Tests\Fixtures\Services\{AnotherService, CrashingService, ExampleService};
 
 final class ContainerTest extends TestCase
 {
@@ -67,7 +53,7 @@ final class ContainerTest extends TestCase
     public function testGetThrowsContainerExceptionIfInstantiationCrashes()
     {
         $container = new Container();
-        $this->expectException(\Lento\Exceptions\ContainerException::class);
+        $this->expectException(ContainerException::class);
         $container->get(CrashingService::class);
     }
 }
